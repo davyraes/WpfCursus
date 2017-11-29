@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfCursus", "WpfCursus\WpfCursus.csproj", "{7BC5A32D-828E-4531-9037-5D1C63AB1D69}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Verkeerslicht", "Verkeerslicht\Verkeerslicht.csproj", "{40689474-372A-4DD2-BDF7-72BDFCAE7BC6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TekstVerwerken", "TekstVerwerken\TekstVerwerken.csproj", "{692B1534-BB55-4DB4-B3E9-D60D18C970F9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ButtonGebruik", "ButtonGebruik\ButtonGebruik.csproj", "{0567637B-347C-4781-A0E9-45E9E9550340}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7BC5A32D-828E-4531-9037-5D1C63AB1D69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7BC5A32D-828E-4531-9037-5D1C63AB1D69}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7BC5A32D-828E-4531-9037-5D1C63AB1D69}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7BC5A32D-828E-4531-9037-5D1C63AB1D69}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40689474-372A-4DD2-BDF7-72BDFCAE7BC6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40689474-372A-4DD2-BDF7-72BDFCAE7BC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40689474-372A-4DD2-BDF7-72BDFCAE7BC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40689474-372A-4DD2-BDF7-72BDFCAE7BC6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{692B1534-BB55-4DB4-B3E9-D60D18C970F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{692B1534-BB55-4DB4-B3E9-D60D18C970F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{692B1534-BB55-4DB4-B3E9-D60D18C970F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{692B1534-BB55-4DB4-B3E9-D60D18C970F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0567637B-347C-4781-A0E9-45E9E9550340}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0567637B-347C-4781-A0E9-45E9E9550340}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0567637B-347C-4781-A0E9-45E9E9550340}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0567637B-347C-4781-A0E9-45E9E9550340}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

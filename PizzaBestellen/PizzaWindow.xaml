@@ -1,0 +1,56 @@
+﻿<Window x:Class="PizzaBestellen.PizzaWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PizzaBestellen"
+        mc:Ignorable="d"
+        Title="PizzaWindow" Height="350" Width="525">
+    <StackPanel>
+        <TextBlock Name="titel" Margin="10" FontSize="30" HorizontalAlignment="Center">Pizza bestellen</TextBlock>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <StackPanel Name="StackPanelGrootte" Grid.Row="0" Grid.Column="0">
+                <RadioButton Name="RadioButtonSmall" GroupName="size" FontSize="10" Margin="5 5 5 0">Small</RadioButton>
+                <RadioButton Name="RadioButtonMedium" GroupName="size" FontSize="10" Margin="5 5 5 0">Medium</RadioButton>
+                <RadioButton Name="RadioButtonLarge" GroupName="size" FontSize="10" Margin="5 5 5 0" IsChecked="True">Large</RadioButton>
+            </StackPanel>
+            <StackPanel Name="StackPanelExtras" Grid.Row="0" Grid.Column="1">
+                <ToggleButton Name="ToggleButtonExtraDikkeKorst" Tag="met extra dikke korst" Margin="10 5 50 5">Extra dikke korst</ToggleButton>
+                <ToggleButton Name="ToggleButtonExtraKaas" Tag="overstrooid met extra kaas" Margin="10 5 50 5">Extra kaas</ToggleButton>
+            </StackPanel>
+            <Rectangle Grid.Row="1" Grid.Column="0" Width="250" Height="1" Margin="5" Fill="Black" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+            <StackPanel Margin="5" Orientation="Horizontal" Grid.Row="1" Grid.Column="1">
+                <TextBlock Name="TextboxHoeveelheid" VerticalAlignment="Center">Hoeveelheid:</TextBlock>
+                <Label Name="LabelHoeveelheid" HorizontalAlignment="Right" VerticalAlignment="Center" Width="30" Content="1"></Label>
+                <StackPanel>
+                    <Button Name="ButtonHoeveelheidPlus" Height="15" FontSize="9" Click="ButtonHoeveelheidPlus_Click">+</Button>
+                    <Button Name="ButtonHoeveelheidMin" Height="15" FontSize="9" Click="ButtonHoeveelheidMin_Click">-</Button>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Name="StackPanelIngredienten" Grid.Row="2" Grid.Column="0">
+                <CheckBox Name="ChkboxTomaat" Tag="tomaat" Margin="5 5 5 0" FontSize="10" IsChecked="True" IsEnabled="False" Opacity="40">tomaat</CheckBox>
+                <CheckBox Name="ChkboxKaas" Tag="kaas" Margin="5 5 5 0" FontSize="10" IsChecked="True" IsEnabled="False" Opacity="40">kaas</CheckBox>
+                <CheckBox Name="ChkboxHam" Tag="ham" Margin="5 5 5 0" FontSize="10">ham</CheckBox>
+                <CheckBox Name="ChkboxAnanas" Tag="ananas" Margin="5 5 5 0" FontSize="10">ananas</CheckBox>
+                <CheckBox Name="ChkboxSalami" Tag="salami" Margin="5 5 5 0" FontSize="10">salami</CheckBox>
+            </StackPanel>
+            <Button Grid.Row="2" Grid.Column="1" Name="ButtonBestellen" HorizontalAlignment="Left" Margin=" 60 0" Click="ButtonBestellen_Click">
+                <StackPanel>
+                    <Image Source="Images/pizza.jpg" Height="70" Margin="5"></Image>
+                    <Label HorizontalAlignment="Center">BESTELLEN</Label>
+                </StackPanel>
+            </Button>
+            
+        </Grid>
+        <Label Name="LabelBestelling" Margin="5"></Label>
+    </StackPanel>
+</Window>

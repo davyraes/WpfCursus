@@ -6,7 +6,12 @@
         <Label BorderBrush="Black" BorderThickness="2" Name="LabelTekst"
                Height="50">Dit is de tekstblok die we gaan manipuleren</Label>
         <StackPanel Orientation="Horizontal">
-            <ToggleButton Margin="10" Name="ButtonBold" Checked="ButtonBold_Checked" Unchecked="ButtonBold_Unchecked">Bold</ToggleButton>
+            <ToggleButton Margin="10" Name="ButtonBold" Checked="ButtonBold_Checked" Unchecked="ButtonBold_Unchecked">
+                <StackPanel>
+                    <Image Source="pack://application:,,,/Images/bold.png"/>
+                    <Label>Bold</Label>
+                </StackPanel>
+            </ToggleButton>
             <ToggleButton Margin="10" Name="ButtonItalic" Checked="ButtonItalic_Checked" Unchecked="ButtonItalic_Unchecked">Italic</ToggleButton>
             <TextBlock Margin="10">Lettertype vergroten of verkleinen</TextBlock>
             <RepeatButton Margin="10" Width="30" Name="RepeatButtonGroter" Interval="100" Delay="1000" Click="RepeatButtonGroter_Click">+</RepeatButton>

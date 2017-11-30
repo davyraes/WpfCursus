@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{0567637B-347C-4781-A0E9-45E9E9550340}</ProjectGuid>
+    <ProjectGuid>{4297DB67-EE59-4284-AA03-C7339F374EA1}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ButtonGebruik</RootNamespace>
-    <AssemblyName>ButtonGebruik</AssemblyName>
+    <RootNamespace>PizzaBestellen</RootNamespace>
+    <AssemblyName>PizzaBestellen</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -55,7 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="ButtonGebruikWindow.xaml">
+    <Page Include="PizzaWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -63,8 +63,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ButtonGebruikWindow.xaml.cs">
-      <DependentUpon>ButtonGebruikWindow.xaml</DependentUpon>
+    <Compile Include="PizzaWindow.xaml.cs">
+      <DependentUpon>PizzaWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -96,16 +96,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\afsluiten.png" />
-    <Resource Include="Images\bold.png" />
-    <Resource Include="Images\copy.png" />
-    <Resource Include="Images\cut.png" />
-    <Resource Include="Images\italic.png" />
-    <Resource Include="Images\open.png" />
-    <Resource Include="Images\paste.png" />
-    <Resource Include="Images\preview.png" />
-    <Resource Include="Images\print.png" />
-    <Resource Include="Images\save.png" />
+    <Resource Include="Images\pizza.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

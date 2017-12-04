@@ -5,24 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Telefoon"
         mc:Ignorable="d"
-        Title="TelefoonWindow" Height="350" Width="525">
+        Title="TelefoonWindow" Height="350" Width="525" Loaded="Window_Loaded">
     <StackPanel Margin="20">
         <ComboBox Name="ComboBoxGroep" Width="250" HorizontalAlignment="Left" SelectionChanged="ComboBoxGroep_SelectionChanged"></ComboBox>
         <StackPanel Orientation="Horizontal">
-            <ListBox Name="ListBoxPersonen" Height="200" Width="250" Margin="0 20" >
+            <ListBox x:Name="ListBoxPersonen" Height="200" Width="250" Margin="0 20" >
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <Border BorderBrush="Black" BorderThickness="1" Margin="10 0">
+                        <Border BorderBrush="Black" BorderThickness="1" Margin="5 0" Width="200">
                             <StackPanel Orientation="Horizontal">
-                                <Image Source="{Binding Path=Foto}" Stretch="Fill" Width="40" Height="40"/>
-                                <TextBlock Text="{Binding Path=Naam}" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                                <Image Source="{Binding Foto}" Stretch="Fill" Width="40" Height="40"/>
+                                <TextBlock Text="{Binding Naam}" HorizontalAlignment="Left" VerticalAlignment="Top"/>
                             </StackPanel>
                         </Border>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
-            <Button Name="ButtonTelefoon" VerticalAlignment="Center" Margin="80 0 0 0">
-                <Image Height="70" Width="70" Margin="5" Source="Images/telefoon2.jpg"></Image>
+            <Button x:Name="ButtonTelefoon" VerticalAlignment="Center" Margin="80 0 0 0" Click="ButtonTelefoon_Click">
+                <Image Height="70" Width="70" Source="Images/telefoon2.jpg"/>
             </Button>
         </StackPanel>
 

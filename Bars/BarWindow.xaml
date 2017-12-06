@@ -5,11 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:custom="clr-namespace:Bars"
         mc:Ignorable="d"
-        Title="Werken met bars" Height="350" Width="525" Loaded="Window_Loaded">
+        Title="Werken met bars" Height="350" Width="525" Loaded="Window_Loaded" Closing="Window_Closing">
     
     <Window.CommandBindings>
         <CommandBinding Command="{x:Static custom:BarWindow.mijnRouteCtrlB}" Executed="ctrlBexecuted"/>
         <CommandBinding Command="{x:Static custom:BarWindow.mijnRouteCtrlI}" Executed="ctrlIexecuted"/>
+        <CommandBinding Command="Save" Executed="SaveExecuted"/>
+        <CommandBinding Command="Open" Executed="OpenExecuted"/>
+        <CommandBinding Command="Print" Executed="PrintExecuted"/>
+        <CommandBinding Command="PrintPreview" Executed="PreviewExecuted"/>
+        <CommandBinding Command="Close" Executed="CloseExecuted"/>
     </Window.CommandBindings>
     <Window.InputBindings>
         <KeyBinding Key="B" Modifiers="Ctrl" Command="{x:Static custom:BarWindow.mijnRouteCtrlB}"/>
@@ -22,6 +27,8 @@
                 <MenuItem Header="Opslaan" Command="Save"/>
                 <MenuItem Header="AfdrukVoorbeeld" Command="PrintPreview"/>
                 <MenuItem Header="Afdrukken..." Command="Print"/>
+                <Separator></Separator>
+                <MenuItem Header="Afsluiten" Command="Close"/>
             </MenuItem>
             <MenuItem Header="Editeren">
                 <MenuItem Header="Knippen" Command="Cut"/>
@@ -38,7 +45,24 @@
                 <MenuItem Name="MenuSchuin" Header="_Schuindruk" IsCheckable="True" Click="MenuSchuin_Click" InputGestureText="Ctrl+I"/>
             </MenuItem>
         </Menu>
-        <ToolBarTray DockPanel.Dock="Top">
+        <ToolBarTray DockPanel.Dock="Top" Height="30">
+            <ToolBar Name="BestandBalk">
+                <Button Command="Close">
+                    <Image Source="Images/afsluiten.png"/>
+                </Button>
+                <Button Command="Open">
+                    <Image Source="Images/open.png"/>
+                </Button>
+                <Button Command="Save">
+                    <Image Source="Images/save.png"/>
+                </Button>
+                <Button Command="PrintPreview">
+                    <Image Source="Images/preview.png"/>
+                </Button>
+                <Button Command="Print">
+                    <Image Source="Images/print.png"/>
+                </Button>
+            </ToolBar>
             <ToolBar Name="EditeerBalk">
                 <Button Command="Cut">
                     <Image Source="Images/cut.png"></Image>

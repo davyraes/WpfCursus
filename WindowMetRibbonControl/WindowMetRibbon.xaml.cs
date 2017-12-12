@@ -29,6 +29,29 @@ namespace WindowMetRibbonControl
         public WindowMetRibbon()
         {
             InitializeComponent();
+            LeesMRU();
+            if (WindowMetRibbonControl.Properties.Settings.Default.qat!=null)
+            {
+                System.Collections.Specialized.StringCollection qatlijst = WindowMetRibbonControl.Properties.Settings.Default.qat;
+                int lijnnr = 0;
+                while(lijnnr<qatlijst.Count)
+                {
+                    string commando = qatlijst[lijnnr];
+                    string png = qatlijst[lijnnr + 1];
+                    RibbonButton nieuweknop = new RibbonButton();
+                    BitmapImage icon = new BitmapImage(new Uri(png));
+                    nieuweknop.SmallImageSource = icon;
+                    CommandBindingCollection ccol = this.CommandBindings;
+                    foreach(CommandBinding cb in ccol)
+                    {
+                        RoutedUICommand rcb = (RoutedUICommand)cb.Command;
+                            if (rcb.Text == commando)
+                                nieuweknop.Command = rcb;
+                    }
+                    Qat.Items.Add(nieuweknop);
+                    lijnnr += 2;
+                }
+            }
         }
 
 
@@ -40,6 +63,7 @@ namespace WindowMetRibbonControl
                 {
                     TextBoxVoorbeeld.Text = bestand.ReadLine();
                 }
+                BijwerkenMRU(bestandsnaam);
             }
             catch (Exception ex)
             {
@@ -74,6 +98,7 @@ namespace WindowMetRibbonControl
                         bestand.WriteLine(TextBoxVoorbeeld.Text);
                     }
                 }
+                BijwerkenMRU(dlg.FileName);
             }
             catch (Exception ex)
             {
@@ -120,7 +145,86 @@ namespace WindowMetRibbonControl
             SolidColorBrush kleur = (SolidColorBrush)new BrushConverter().ConvertFromString(keuze.Tag.ToString());
             TextBoxVoorbeeld.Foreground = kleur;
         }
-        
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            System.Collections.Specialized.StringCollection qatlijst = new System.Collections.Specialized.StringCollection();
+            if (WindowMetRibbonControl.Properties.Settings.Default.qat != null)
+                WindowMetRibbonControl.Properties.Settings.Default.qat.Clear();
+            foreach(object li in Qat.Items)
+            {
+                if (li is RibbonButton)
+                {
+                    RibbonButton knop = (RibbonButton)li;
+                    RoutedUICommand commando = (RoutedUICommand)knop.Command;
+                    qatlijst.Add(commando.Text);
+                    qatlijst.Add(knop.SmallImageSource.ToString());
+                }
+            }
+            if (qatlijst.Count > 0)
+                WindowMetRibbonControl.Properties.Settings.Default.qat = qatlijst;
+            WindowMetRibbonControl.Properties.Settings.Default.Save();
+        }
+        private void LeesMRU()
+        {
+            MRUGalleryCat.Items.Clear();
+            if (WindowMetRibbonControl.Properties.Settings.Default.mru != null)
+            {
+                System.Collections.Specialized.StringCollection mrulijst = WindowMetRibbonControl.Properties.Settings.Default.mru;
+                for (int lijnnr = 0; lijnnr < mrulijst.Count; lijnnr++)
+                {
+                    MRUGalleryCat.Items.Add(mrulijst[lijnnr]);
+                }
+            }
+        }
+        private void BijwerkenMRU(string bestandsnaam)
+        {
+            System.Collections.Specialized.StringCollection mrulijst = new System.Collections.Specialized.StringCollection();
+            if (WindowMetRibbonControl.Properties.Settings.Default.mru != null)
+            {
+                mrulijst = WindowMetRibbonControl.Properties.Settings.Default.mru;
+                int positie = mrulijst.IndexOf(bestandsnaam);
+                if (positie >= 0)
+                    mrulijst.RemoveAt(positie);
+                else if (mrulijst.Count >= 6)
+                    mrulijst.RemoveAt(5);
+               
+            }
+            mrulijst.Insert(0, bestandsnaam);
+            WindowMetRibbonControl.Properties.Settings.Default.mru = mrulijst;
+            WindowMetRibbonControl.Properties.Settings.Default.Save();
+            LeesMRU();
+        }
+    }
+    public class BooleanToFontWeight : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if ((Boolean)value)
+                return "Bold";
+            else
+                return "Normal";
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return null;
+        }
+    }
+    public class BooleanToFontStyle : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if ((Boolean)value)
+                return "Italic";
+            else
+                return "Normal";
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return null;
+        }
     }
 }
 

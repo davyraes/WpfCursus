@@ -1,7 +1,8 @@
 ﻿<Window x:Class="WindowMetRibbonControl.WindowMetRibbon"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-       Height="350" Width="525" Icon="images\app48.png" Title="Window met Ribbon">
+        xmlns:local="clr-namespace:WindowMetRibbonControl"
+       Height="350" Width="525" Icon="images\app48.png" Title="Window met Ribbon" Closing="Window_Closing">
 
     <Window.CommandBindings>
         <CommandBinding Command="Help" Executed="HelpExecuted"></CommandBinding>
@@ -12,9 +13,20 @@
         <CommandBinding Command="Print" Executed="PrintExecuted"></CommandBinding>
         <CommandBinding Command="PrintPreview" Executed="PreviewExecuted"></CommandBinding>
     </Window.CommandBindings>
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="LogishNaarVisueel"/>
+        <local:BooleanToFontWeight x:Key="LogischNaarFontDikte"/>
+        <local:BooleanToFontStyle x:Key="LosgischNaarFontStijl"/>
+    </Window.Resources>
 
     <DockPanel LastChildFill="True">
         <Ribbon DockPanel.Dock="Top">
+            <Ribbon.HelpPaneContent>
+                <RibbonButton SmallImageSource="images\help64.png" Command="Help" ToolTipTitle="Help"
+                              ToolTipDescription="Opent het helpscherm" ToolTipFooterTitle="More Help"
+                              ToolTipFooterDescription="Druk op F1" ToolTipFooterImageSource="images\question16.png"
+                              ToolTipImageSource="images\help64.png"/>
+            </Ribbon.HelpPaneContent>
             <Ribbon.ApplicationMenu>
                 <RibbonApplicationMenu SmallImageSource="images\bestand64.png" KeyTip="A">
                     <RibbonApplicationMenuItem Header="New" Command="New" ImageSource="images\new16.png"/>
@@ -23,7 +35,7 @@
                     <RibbonSeparator/>
                     <RibbonSplitMenuItem Header="Afdrukmogelijkheden" ImageSource="images\printer64.png">
                         <RibbonApplicationMenuItem Header="Afdrukken" Command="Print" ImageSource="images\printer64.png"/>
-                        <RibbonApplicationMenuItem Header="Afdrukvoorbeeld" Command="PrintPreview" ImageSource="images\preview64.png"/>
+                        <RibbonApplicationMenuItem Header="Afdrukvoorbeeld" Command="PrintPreview" ImageSource="images\preview64.png" QuickAccessToolBarImageSource="images\preview64.png"/>
                     </RibbonSplitMenuItem>
                     <RibbonApplicationMenu.FooterPaneContent>
                         <RibbonButton Command="Close" SmallImageSource="images\close64.png" HorizontalAlignment="Right" Label="Afsluiten"/>
@@ -35,6 +47,16 @@
                     </RibbonApplicationMenu.AuxiliaryPaneContent>
                 </RibbonApplicationMenu>
             </Ribbon.ApplicationMenu>
+            <Ribbon.QuickAccessToolBar>
+                <RibbonQuickAccessToolBar Height="24" Name="Qat">
+                    <RibbonSplitButton SmallImageSource="images\refresh16.png">
+                        <RibbonButton SmallImageSource="images\undo16.png" Label="Undo"/>
+                        <RibbonButton SmallImageSource="images\redo16.png" Label="Redo"/>
+                    </RibbonSplitButton>
+                    <RibbonToggleButton Name="ButtonVet" SmallImageSource="images\bold.png"/>
+                    <RibbonToggleButton Name="buttonSchuin" SmallImageSource="images\italic.png"/>
+                </RibbonQuickAccessToolBar>
+            </Ribbon.QuickAccessToolBar>
             <RibbonTab Header="Bestand" KeyTip="B">
                 <RibbonGroup Header="Open/Save">
                     <RibbonMenuButton LargeImageSource="images\bestand64.png" Label="Bestand" KeyTip="B">
@@ -49,8 +71,8 @@
                     <RibbonMenuItem Command="Redo" ImageSource="images\redo16.png" Header="Redo"/>
                 </RibbonGroup>
                 <RibbonGroup Header="Opmaak">
-                    <RibbonCheckBox SmallImageSource="images\bold.png" Label="Vet"/>
-                    <RibbonCheckBox SmallImageSource="images\italic.png" Label="Schuin"/>
+                    <RibbonCheckBox SmallImageSource="images\bold.png" Label="Vet" IsChecked="{Binding ElementName=ButtonVet, Path=IsChecked}"/>
+                    <RibbonCheckBox SmallImageSource="images\italic.png" Label="Schuin" IsChecked="{Binding ElementName=buttonSchuin, Path=IsChecked}"/>
                     <RibbonCheckBox SmallImageSource="images\ReadOnly16.png" Label="Alleen lezen" Name="CheckBoxAlleenLezen"/>
                 </RibbonGroup>
                 <RibbonGroup Header="Kleur">
@@ -62,10 +84,18 @@
                     </RibbonMenuButton>
                 </RibbonGroup>
             </RibbonTab>
+            <RibbonTab Header="Nieuw" ContextualTabGroupHeader="TabNieuw">
+                <RibbonGroup>
+                    <RibbonMenuItem Command="New" ImageSource="images\new16.png" Header="Leeg document"/>
+                </RibbonGroup>
+            </RibbonTab>
+            <Ribbon.ContextualTabGroups>
+                <RibbonContextualTabGroup Header="TabNieuw" Visibility="{Binding ElementName=TextBoxVoorbeeld, Path=IsReadOnly,Converter={StaticResource LogishNaarVisueel}}" Background="Green"/>
+            </Ribbon.ContextualTabGroups>
         </Ribbon>
-        <TextBox  Name="TextBoxVoorbeeld" Text="Dit is voorbeeldtekst" 
-           VerticalAlignment="Stretch" HorizontalAlignment="Stretch" 
-           FontSize="24" TextWrapping="Wrap" MaxWidth="600" MaxHeight="900" IsReadOnly="{Binding ElementName=CheckBoxAlleenLezen, Path=IsChecked}">
+        <TextBox  Name="TextBoxVoorbeeld" Text="Dit is voorbeeldtekst" FontStyle="{Binding ElementName=buttonSchuin,Path=IsChecked,Converter={StaticResource LosgischNaarFontStijl}}"
+           VerticalAlignment="Stretch" HorizontalAlignment="Stretch" FontWeight="{Binding ElementName=ButtonVet, Path=IsChecked, Converter={StaticResource LogischNaarFontDikte}}"
+           FontSize="14" TextWrapping="Wrap" MaxWidth="600" MaxHeight="900" IsReadOnly="{Binding ElementName=CheckBoxAlleenLezen, Path=IsChecked}">
         </TextBox>
     </DockPanel>
 </Window>

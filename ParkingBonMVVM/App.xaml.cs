@@ -13,5 +13,13 @@ namespace ParkingBonMVVM
     /// </summary>
     public partial class App : Application
     {
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            base.OnStartup(e);
+            ViewModel.ParkingBonVM vm = new ViewModel.ParkingBonVM(new Model.Bon());
+            View.ParkingBonView view = new View.ParkingBonView();
+            view.DataContext = vm;
+            view.Show();
+        }
     }
 }

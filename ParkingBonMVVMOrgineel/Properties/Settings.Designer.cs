@@ -22,16 +22,5 @@ namespace ParkingBonMVVM.Properties {
                 return defaultInstance;
             }
         }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public global::System.Collections.Specialized.StringCollection qat {
-            get {
-                return ((global::System.Collections.Specialized.StringCollection)(this["qat"]));
-            }
-            set {
-                this["qat"] = value;
-            }
-        }
     }
 }

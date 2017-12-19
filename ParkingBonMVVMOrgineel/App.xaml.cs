@@ -16,10 +16,10 @@ namespace ParkingBonMVVM
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
-            ViewModel.ParkingbonVM vm = new ViewModel.ParkingbonVM(new Model.ParkingBon());
-            View.ParkingBonView parkingbon = new View.ParkingBonView();
-            parkingbon.DataContext = vm;
-            parkingbon.Show();
+            ViewModel.ParkingBonVM vm = new ViewModel.ParkingBonVM(new Model.Bon());
+            View.ParkingBonView view = new View.ParkingBonView();
+            view.DataContext = vm;
+            view.Show();
         }
     }
 }

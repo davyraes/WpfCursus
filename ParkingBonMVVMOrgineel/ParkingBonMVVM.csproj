@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{106F70C8-31B4-4DB2-B269-17CC006F1AA5}</ProjectGuid>
+    <ProjectGuid>{B177150C-8C61-43B5-85AB-A3545611209D}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ParkingBonMVVM</RootNamespace>
@@ -77,8 +77,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Model\ParkingBon.cs" />
-    <Compile Include="ViewModel\ParkingbonVM.cs" />
+    <Compile Include="Model\Bon.cs" />
+    <Compile Include="ViewModel\ParkingBonVM.cs" />
     <Compile Include="View\ParkingBonView.xaml.cs">
       <DependentUpon>ParkingBonView.xaml</DependentUpon>
     </Compile>
@@ -119,16 +119,16 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Resource Include="View\Images\Bestand.png" />
-    <Resource Include="View\Images\close.jpg" />
-    <Resource Include="View\Images\new.jpg" />
-    <Resource Include="View\Images\open.jpg" />
-    <Resource Include="View\Images\parkingbon.jpg" />
-    <Resource Include="View\Images\print.jpg" />
-    <Resource Include="View\Images\save.jpg" />
-  </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Images\Bestand.png" />
+    <Resource Include="Images\close.jpg" />
+    <Resource Include="Images\new.jpg" />
+    <Resource Include="Images\open.jpg" />
+    <Resource Include="Images\parkingbon.jpg" />
+    <Resource Include="Images\print.jpg" />
+    <Resource Include="Images\save.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

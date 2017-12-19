@@ -1,139 +1,120 @@
 ﻿using System;
-using System.Windows;
+using System.ComponentModel;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using Microsoft.Win32;
-using System.ComponentModel;
+using System.Windows;
 using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ParkingBonMVVM;
+using Microsoft.Win32;
+using System.Windows.Controls.Ribbon;
+
 
 namespace ParkingBonMVVM.ViewModel
 {
-    public class ParkingBonVM: ViewModelBase
+    public class ParkingbonVM:ViewModelBase
     {
-        private Model.Bon parkingbon;
-        public ParkingBonVM (Model.Bon nParkingBon)
+        private Model.ParkingBon parkingbon;
+        public ParkingbonVM (Model.ParkingBon nparkingbon)
         {
-            parkingbon = nParkingBon;
+            parkingbon = nparkingbon;
         }
         public DateTime Datum
         {
-            get
-            {
-                return parkingbon.Datum;
-            }
-            set
-            {
-                parkingbon.Datum = value;
+            get { return parkingbon.Datum; }
+            set { parkingbon.Datum = value;
                 RaisePropertyChanged("Datum");
             }
         }
         public DateTime Aankomst
         {
-            get
-            {
-                return parkingbon.BeginTijd;
-            }
-            set
-            {
-                parkingbon.BeginTijd = value;
+            get { return parkingbon.Datum; }
+            set { parkingbon.Aankomst = value;
                 RaisePropertyChanged("Aankomst");
-            }
-        }
-        public DateTime Vertrek
-        {
-            get
-            {
-                return parkingbon.EindTijd;
-            }
-            set
-            {
-                parkingbon.EindTijd = value;
-                RaisePropertyChanged("Vertrek");
             }
         }
         public int Bedrag
         {
-            get
-            {
-                return parkingbon.Bedrag;
-            }
-            set
-            {
-                parkingbon.Bedrag = value;
+            get { return parkingbon.Bedrag; }
+            set { parkingbon.Bedrag = value;
                 RaisePropertyChanged("Bedrag");
             }
         }
+        public DateTime Vertrek
+        {
+            get { return parkingbon.Vertrek; }
+            set { parkingbon.Vertrek = value;
+                RaisePropertyChanged("Vertrek");
+            }
+        }
         public RelayCommand MeerCommand
-        { get { return new RelayCommand(MeerBetalen); } }
-        private void MeerBetalen()
+        {
+            get { return new RelayCommand(MeerBedrag); }
+        }
+        private void MeerBedrag()
         {
             if (Vertrek.Hour < 22)
                 Bedrag++;
             Vertrek = Aankomst.AddHours(0.5 * Bedrag);
         }
         public RelayCommand MinderCommand
-        { get { return new RelayCommand(MinderBetalen); } }
-        private void MinderBetalen()
+        {
+            get { return new RelayCommand(MinderBedrag); }
+        }
+        private void MinderBedrag()
         {
             if (Bedrag > 0)
                 Bedrag--;
             Vertrek = Aankomst.AddHours(0.5 * Bedrag);
         }
         public RelayCommand NewCommand
-        { get { return new RelayCommand(Nieuw); } }
+        {
+            get { return new RelayCommand(Nieuw); }
+        }
         private void Nieuw()
         {
-            Bedrag = 0;
             Datum = DateTime.Now;
             Aankomst = DateTime.Now;
+            Bedrag = 0;
             Vertrek = Aankomst;
         }
         public RelayCommand OpenCommand
         {
-            get { return new RelayCommand(Openen); }
+            get { return new RelayCommand(OpenBestand); }
         }
-        private void Openen()
+        private void OpenBestand()
         {
-            try
+            OpenFileDialog dlg = new OpenFileDialog();
+            dlg.FileName = "";
+            dlg.DefaultExt = ".bon";
+            dlg.Filter = "Parkingbonnen |*.bon";
+            if(dlg.ShowDialog()==true)
             {
-                OpenFileDialog dlg = new OpenFileDialog();
-                dlg.FileName = "";
-                dlg.DefaultExt = ".bon";
-                dlg.Filter = "Parkingbonnen |*.bon";
-                if (dlg.ShowDialog() == true)
+                using (StreamReader bestand = new StreamReader(dlg.FileName))
                 {
-                    using (StreamReader bestand = new StreamReader(dlg.FileName))
-                    {
-                        Datum = Convert.ToDateTime(bestand.ReadLine());
-                        Aankomst = Convert.ToDateTime(bestand.ReadLine());
-                        Bedrag = Convert.ToInt32(bestand.ReadLine());
-                        Vertrek = Convert.ToDateTime(bestand.ReadLine());
-                    }
+                    Datum = Convert.ToDateTime(bestand.ReadLine());
+                    Aankomst = Convert.ToDateTime(bestand.ReadLine());
+                    Bedrag = Convert.ToInt32(bestand.ReadLine());
+                    Vertrek = Convert.ToDateTime(bestand.ReadLine());
                 }
-            }
-            catch (Exception ex)
-            {
-                System.Windows.MessageBox.Show("Openen mislukt : "+ex.Message);
             }
         }
         public RelayCommand SaveCommand
-        { get { return new RelayCommand(Opslaan); } }
-        private void Opslaan()
+        {
+            get { return new RelayCommand(OpslaanBestand); }
+        }
+        private void OpslaanBestand()
         {
             try
             {
-                string bestandsnaam;
-                bestandsnaam = $"{Datum.Day}-{Datum.Month}-{Datum.Year}om{Aankomst.Hour}-{Aankomst.Minute}";
+                string bestandsnaam = $"{Datum.DayOfWeek}-{Datum.Month}-{Datum.Year}om{Aankomst.Hour}-{Aankomst.Minute}";
                 SaveFileDialog dlg = new SaveFileDialog();
                 dlg.FileName = bestandsnaam;
                 dlg.DefaultExt = ".bon";
-                dlg.Filter = "ParkingBonnen |*.bon";
-                if (dlg.ShowDialog() == true)
+                dlg.Filter = "Parkingbonnen |*.bon";
+                if (dlg.ShowDialog()==true)
                 {
                     using (StreamWriter bestand = new StreamWriter(dlg.FileName))
                     {
@@ -145,24 +126,26 @@ namespace ParkingBonMVVM.ViewModel
                 }
             }
             catch(Exception ex)
-            {
-                System.Windows.MessageBox.Show("Opslaan Mislukt : "+ex.Message);
-            }
+            { MessageBox.Show("Opslaan Mislukt : " + ex.Message); }
         }
         public RelayCommand CloseCommand
-        { get { return new RelayCommand(Afsluiten); } }
-        private void Afsluiten()
         {
+            get { return new RelayCommand(Sluiten); }
+        }
+        private void Sluiten()
+        {
+
             Application.Current.MainWindow.Close();
         }
-        public RelayCommand<CancelEventArgs> AfsluitenEvent
+        public RelayCommand<CancelEventArgs>OnWindowClosing
         {
-            get { return new RelayCommand<CancelEventArgs>(OnWindowClosing); }
+            get { return new RelayCommand<CancelEventArgs>(WindowSluiten); }
         }
-        private void OnWindowClosing(CancelEventArgs e)
+        private void WindowSluiten(CancelEventArgs e)
         {
-            if (MessageBox.Show("Afsluiten", "Wilt u het programma afsluiten", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No) == MessageBoxResult.No)
-                e.Cancel = true;
+            if (MessageBox.Show("Afsluiten", "Wilt u het programma stoppen", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No) == MessageBoxResult.No)
+                e.Cancel=true;
+            
         }
     }
 }

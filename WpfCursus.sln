@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfCursus", "WpfCursus\WpfCursus.csproj", "{7BC5A32D-828E-4531-9037-5D1C63AB1D69}"
 EndProject
@@ -40,6 +40,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVVMHobby", "MVVMHobby\MVVMHobby.csproj", "{AC6318F6-B5CC-4FEC-9CA7-005D3110E88E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParkingBonMVVM", "ParkingBonMVVM\ParkingBonMVVM.csproj", "{106F70C8-31B4-4DB2-B269-17CC006F1AA5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "testje", "testje\testje.csproj", "{A5D6CF65-97EA-41E8-8004-883231D9E1E5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -123,8 +125,15 @@ Global
 		{106F70C8-31B4-4DB2-B269-17CC006F1AA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{106F70C8-31B4-4DB2-B269-17CC006F1AA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{106F70C8-31B4-4DB2-B269-17CC006F1AA5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5D6CF65-97EA-41E8-8004-883231D9E1E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5D6CF65-97EA-41E8-8004-883231D9E1E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5D6CF65-97EA-41E8-8004-883231D9E1E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5D6CF65-97EA-41E8-8004-883231D9E1E5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {ABBF5795-CADD-453C-9EB9-6353BD10DB22}
 	EndGlobalSection
 EndGlobal

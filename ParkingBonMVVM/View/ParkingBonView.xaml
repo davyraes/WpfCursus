@@ -4,10 +4,13 @@
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         xmlns:gala="http://www.galasoft.ch/mvvmlight"
         xmlns:global="clr-namespace:System.Globalization;assembly=mscorlib"      
-        Title="ParkingBon" Height="450" Width="525" Closing="RibbonWindow_Closing">
+        Title="ParkingBon" Height="450" Width="525">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Closing">
             <gala:EventToCommand Command="{Binding OnWindowClosing}" PassEventArgsToCommand="True"/>
+        </i:EventTrigger>
+        <i:EventTrigger EventName="Initialized">
+            <gala:EventToCommand Command="{Binding OnWindowOpening}"/>
         </i:EventTrigger>
     </i:Interaction.Triggers>
     <DockPanel>

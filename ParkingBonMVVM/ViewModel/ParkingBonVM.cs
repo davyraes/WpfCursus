@@ -147,5 +147,14 @@ namespace ParkingBonMVVM.ViewModel
                 e.Cancel=true;
             
         }
+        public RelayCommand<CancelEventArgs> OnWindowOpening
+        {
+            get { return new RelayCommand<CancelEventArgs>(WindowOpen); }
+        }
+        private void WindowOpen(CancelEventArgs e)
+        {
+            if (MessageBox.Show("Hallo en welkom", "welkom", MessageBoxButton.OKCancel, MessageBoxImage.Hand, MessageBoxResult.OK) == MessageBoxResult.Cancel)
+                e.Cancel=true;
+        }
     }
 }
